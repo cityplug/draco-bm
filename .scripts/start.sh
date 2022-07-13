@@ -73,10 +73,10 @@ mkdir -p /draco/.AppData/
 mkdir -p /draco/storage/
 
 rm -rf /etc/update-motd.d/* && rm -rf /etc/motd
-rm -rf /etc/issue.d/cockpit.issue /etc/motd.d/cockpit
+#rm -rf /etc/issue.d/cockpit.issue /etc/motd.d/cockpit
 cp /opt/draco-bm/10-uname /etc/update-motd.d/ && chmod +x /etc/update-motd.d/10-uname
 
-cp /opt/draco-bm/.scripts/ssh_config /home/shay/.ssh/config
+mv /opt/draco-bm/.scripts/ssh_config /home/shay/.ssh/config
 
 # --- Backup Script
 (crontab -l 2>/dev/null; echo "0 1 * * * /opt/draco-bm/.scripts/backup.sh") | crontab -

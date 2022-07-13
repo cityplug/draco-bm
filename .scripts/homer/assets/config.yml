@@ -1,5 +1,5 @@
 ---
-title: "Draco-Master"
+title: "Draco Dashboard"
 subtitle: "Home"
 
 header: false
@@ -47,38 +47,22 @@ links:
    target: "_blank" # optional html a tag target attribute
 
 services:
-  - name: "// Local Services"
+  - name: "//Hardware"
+    icon: "fa-light fa-server"
     items:
-      - name: "Home Assistant "
-        logo: "assets/tools/ha.png"
-        subtitle: "Automation Panel"
-        tag: "core"
-        tagstyle: "is-link"
-        url: "http://192.168.50.15:8123"
-        target: "_blank" # optional html a tag target attribute
+#      - name: "Home Assistant "
+#        logo: "assets/tools/ha.png"
+#        subtitle: "Automation Panel"
+#        tag: "core"
+#        tagstyle: "is-link"
+#        url: "http://192.168.50.15:8123"
+#        target: "_blank" # optional html a tag target attribute
       - name: "Wireguard"
         logo: "assets/tools/wireguard.png"
         subtitle: "VPN Server"
         tag: "app"
         tagstyle: "is-link"
         url: "http://192.168.50.250:24792/"
-        target: "_blank" # optional html a tag target attribute
-      - name: "Pihole-VM"
-        logo: "assets/tools/pihole.png"
-        subtitle: "DNS & Ad Blocker"
-        tag: "service"
-        tagstyle: "is-success"
-        url: "http://192.168.50.250/admin/"
-        target: "_blank" # optional html a tag target attribute
-
-  - name: "// Services"
-    items:
-      - name: "Cockpit"
-        logo: "assets/tools/cockpit.png"
-        subtitle: "Server Management GUI"
-        tag: "service"
-        tagstyle: "is-success"
-        url: "#"
         target: "_blank" # optional html a tag target attribute
       - name: "PVE"
         logo: "assets/tools/pve.png"
@@ -88,7 +72,26 @@ services:
         url: "https://192.168.50.11:8006"
         target: "_blank" # optional html a tag target attribute
 
-  - name: "// Management"
+  - name: "//Services"
+    icon: "fa-duotone fa-gears"
+    items:
+      - name: "Cockpit"
+        logo: "assets/tools/cockpit.png"
+        subtitle: "Server Management GUI"
+        tag: "service"
+        tagstyle: "is-success"
+        url: "#"
+        target: "_blank" # optional html a tag target attribute
+      - name: "Pihole-VM"
+        logo: "assets/tools/pihole.png"
+        subtitle: "DNS & Ad Blocker"
+        tag: "service"
+        tagstyle: "is-success"
+        url: "http://192.168.50.250/admin/"
+        target: "_blank" # optional html a tag target attribute
+
+  - name: "//Management"
+    icon: "fa-light fa-folder-open"
     items:
       - name: "Portainer"
         logo: "assets/tools/portainer.png"
@@ -105,7 +108,8 @@ services:
         url: "https://unifi.cityplug.co.uk:8443"
         target: "_blank" # optional html a tag target attribute
 
-  - name: "// Estate Management"
+  - name: "//Estate"
+    icon: "fa-duotone fa-browsers"
     items:
       - name: "Draco-BM"
         logo: "assets/tools/ghost.png"

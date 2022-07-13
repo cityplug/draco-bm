@@ -12,7 +12,7 @@ services:
       TZ: Europe/London
       WEBPASSWORD:
       ServerIP: 192.168.50.253
-    hostname: Draco-BM.pihole
+    hostname: draco-bm.pihole
     volumes:
       - /draco/.AppData/pihole:/etc/pihole/
       - /draco/.AppData/pihole/dnsmasq:/etc/dnsmasq.d/
@@ -22,16 +22,6 @@ services:
     networks:
       draco_net:
         ipv4_address: 192.168.50.253
-
-  homer:
-    container_name: homer
-    image: b4bz/homer
-    hostname: homer  
-    volumes:
-      - /draco/.AppData/homer/assets:/www/assets
-    ports:
-      - 85:8080
-    restart: always
 
   unifi:
     container_name: unifi-home
