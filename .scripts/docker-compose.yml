@@ -6,7 +6,7 @@ networks:
 
 services:
   pihole:
-    container_name: pihole_BM
+    container_name: pihole_bm
     image: pihole/pihole:latest
     environment:
       TZ: Europe/London

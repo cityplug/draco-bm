@@ -5,6 +5,7 @@ docker network create -d macvlan \
 
 echo
 sudo docker-compose up -d
+docker ps
 
 # ----> Next Script
 ./finish.sh

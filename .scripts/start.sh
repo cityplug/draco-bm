@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Raspbian (draco.machine v2.1) setup script.
+# Raspbian (draco.machine v2.2) setup script.
 
 # --- Remove Bloatware
 echo "#  ---  Removing Bloatware  ---  #"
@@ -39,7 +39,7 @@ echo "#  ---  Root password changed  ---  #"
 hostnamectl set-hostname Draco-BM.home.lan
 hostnamectl set-hostname "Draco-BM" --pretty
 rm -rf /etc/hosts
-cp /opt/draco-bm/.scripts/hosts /etc/hosts
+mv /opt/draco-bm/.scripts/hosts /etc/hosts
 
 # --- Install Packages
 echo "#  ---  Installing New Packages  ---  #"
@@ -47,6 +47,7 @@ apt install unattended-upgrades -y
 apt install fail2ban -y
 apt install netdiscover -y
 apt install samba samba-common-bin -y
+apt install openssl shellinabox
 # --- Install Docker
 mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -69,17 +70,22 @@ usermod -aG docker shay && docker-compose --version
 # --- Addons
 echo "#  ---  Running Addons  ---  #"
 mkdir -p /draco
-mkdir -p /draco/.AppData/
-mkdir -p /draco/storage/
+mkdir /draco/.AppData/
+mkdir /draco/storage/
+mkdir /draco/public
 
 rm -rf /etc/update-motd.d/* && rm -rf /etc/motd
 #rm -rf /etc/issue.d/cockpit.issue /etc/motd.d/cockpit
-cp /opt/draco-bm/10-uname /etc/update-motd.d/ && chmod +x /etc/update-motd.d/10-uname
+mv /opt/draco-bm/10-uname /etc/update-motd.d/ && chmod +x /etc/update-motd.d/10-uname
 
 mv /opt/draco-bm/.scripts/ssh_config /home/shay/.ssh/config
 
-# --- Backup Script
-(crontab -l 2>/dev/null; echo "0 1 * * * /opt/draco-bm/.scripts/backup.sh") | crontab -
+rm -rf /etc/sysconfig/shellinaboxd
+mv /opt/draco-bm/.scripts/shellinabox /etc/sysconfig/shellinaboxd
+service shellinaboxd start
+
+echo "
+0 0 1 * * netdiscover >> /draco/storage/netdiscover-log.txt" >>/etc/crontab
 
 # --- Create and allocate swap
 echo "#  ---  Creating 4GB swap file  ---  #"
