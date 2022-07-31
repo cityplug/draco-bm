@@ -47,7 +47,8 @@ apt install unattended-upgrades -y
 apt install fail2ban -y
 apt install netdiscover -y
 apt install samba samba-common-bin -y
-apt install openssl shellinabox
+apt install cockpit -y
+apt install openssl shellinabox -y
 # --- Install Docker
 mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
