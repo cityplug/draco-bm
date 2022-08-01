@@ -1,30 +1,30 @@
 version: "3"
 
 networks:
-  draco_net:
+  relay_net:
     external: true
 
 services:
   pihole:
-    container_name: pihole_bm
+    container_name: pihole
     image: pihole/pihole:latest
     environment:
       TZ: Europe/London
       WEBPASSWORD:
       ServerIP: 192.168.50.253
-    hostname: draco-bm.pihole
+    hostname: relay.pihole
     volumes:
-      - /draco/.AppData/pihole:/etc/pihole/
-      - /draco/.AppData/pihole/dnsmasq:/etc/dnsmasq.d/
+      - /relay/.AppData/pihole:/etc/pihole/
+      - /relay/.AppData/pihole/dnsmasq:/etc/dnsmasq.d/
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
     networks:
-      draco_net:
+      relay_net:
         ipv4_address: 192.168.50.253
 
   unifi:
-    container_name: unifi-home
+    container_name: unifi
     image: lscr.io/linuxserver/unifi-controller:latest
     environment:
       PUID: 0
@@ -33,7 +33,7 @@ services:
       MEM_STARTUP: 1024
     hostname: unifi
     volumes:
-      - /draco/.AppData/unifi/config:/config
+      - /relay/.AppData/unifi/config:/config
     ports:
       - 3478:3478/udp
       - 10001:10001/udp
@@ -66,4 +66,4 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
-      - /opt/portainer:/data
+      - /relay/.AppData/portainer:/data
